@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import os
 import threading
@@ -19,6 +20,8 @@ def logcat():
 					print yellow(log)
 				elif 'D/' in line:
 					print cyan(log)
+				elif 'I/' in line:
+					print green(log, bold = True)
 				else:
 					print green(log)
 
@@ -40,7 +43,8 @@ def main(process_name):
 	while 1:
 		try:
 			i = raw_input()
-			print i
+			if i == 'c':
+				os.system('clear')
 		except KeyboardInterrupt:
 			break
 
@@ -49,4 +53,3 @@ if __name__ == '__main__':
 		print 'Bad args: No process name'
 		sys.exit(1)
 	main(sys.argv[1])
-	
