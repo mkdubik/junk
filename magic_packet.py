@@ -1,6 +1,7 @@
+import os
 import socket
 
-IP, PORT = socket.gethostbyname('zeus'), 7
+IP, PORT = socket.gethostbyname(os.environ['ZEUS']), 7
 
 '''
 The magic packet is a broadcast frame containing anywhere within its payload 6 bytes of all 255 (FF FF FF FF FF FF in hexadecimal), followed by sixteen repetitions of the target computer's 48-bit MAC address, for a total of 102 bytes.
