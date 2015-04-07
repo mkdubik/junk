@@ -60,7 +60,7 @@ class MusicBot:
 
 		downloaded = self.get_downloaded_urls()
 		print downloaded
-		submissions = r.get_subreddit(sys.argv[1]).get_hot(limit=5)
+		submissions = r.get_subreddit(sys.argv[1]).get_hot(limit=100)
 		for i, x in enumerate(submissions):
 			if x.url in downloaded:
 				continue
