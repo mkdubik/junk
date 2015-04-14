@@ -11,15 +11,13 @@ import json
 import sqlite3
 
 
-def my_hook(d):
-	if d['status'] == 'finished':
-		print('Done downloading, now converting ...')
-
 class MusicBot:
+
 
 	def __init__(self, PATH):
 		self.PATH = PATH
 		self.DATABASE = os.getcwd() + '/CACHE.db'
+		self.GIGABYTE = 1000000000
 	
 	def get_downloaded_urls(self):
 		try:
@@ -48,8 +46,8 @@ class MusicBot:
 		        'preferredquality': '192',
 		    }],
 			'outtmpl': self.PATH + '%(title)s.%(ext)s',
-		    'progress_hooks': [my_hook],
-		    'max_filesize': 400000000,
+		    'max_filesize': self.GIGABYTE,
+			'updatetime': False,
 		}
 		with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 			ydl.download(urls)
@@ -59,14 +57,13 @@ class MusicBot:
 		y = []
 
 		downloaded = self.get_downloaded_urls()
-		print downloaded
 		submissions = r.get_subreddit(sys.argv[1]).get_hot(limit=100)
 		for i, x in enumerate(submissions):
 			if x.url in downloaded:
 				continue
-			if 'youtube' in x.url:
+			if 'youtube' in x.url or 'soundcloud' in x.url:
 				y.append(x.url)
-		
+				break
 		if y:
 			self.youtube(y)
 			self.write_urls(y)
