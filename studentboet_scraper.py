@@ -1,12 +1,13 @@
+import smtplib
+import json
 import os
-import sys
 import requests
-
-import sqlite3
+import traceback
 import re
+
 from lxml import etree
 from dateutil import parser
-from pdb import set_trace
+
 
 class StudentBoet:
 
@@ -17,7 +18,6 @@ class StudentBoet:
 		}
 		self.LIST = self.URL % 'pages/looking-for-housing'
 		self.DETAILS = self.URL % 'housing-ads/%s'
-		self.ACCEPTABLE_MONTHS = (7, 8)
 		self.DATABASE = os.path.dirname(os.path.realpath(__file__)) + '/ids.json'
 
 	def read_ids(self):
@@ -27,18 +27,49 @@ class StudentBoet:
 			except ValueError:
 				return []
 
-	def write_urls(self, ids):
+	def write_ids(self, ids):
 		with open(self.DATABASE, 'w+') as fd:
 			fd.write(json.dumps(ids))
 
-	def get_move_in(self, details):
-		return parser.parse(details.find('.//label[@for="housing_ad_post_form_move_in"]')
-		.getparent()
-		.getparent()
-		.findtext('td'))
+	def get_full_details(self, apartment_id, details):
+		title = details.findall('.//h3')
+		result = {
+			'url': self.DETAILS % apartment_id,
+			'move_in': '',
+			'move_out': '',
+			'rent': '',
+			'type': '',
+			'size': '',
+			'title': title[1].text if len(title) > 1 else 'Unknown',
+		}
+
+		details = details.find('.//div[@id="housing_details"]')
+		table = details.findall('.//table/tr')
+
+		for t in table:
+			key = t.findtext('.//label')
+			if not key:
+				continue
+			key = key.replace(' ', '_').lower()
+			if key not in result:
+				continue
+
+			value = t.findtext('.//td')
+			if not value:
+				continue
+
+			if 'move' in key:
+				try:
+					result[key.lower()] = parser.parse(value)
+				except ValueError:
+					continue
+			else:
+				result[key.lower()] = value.lower()
+		return result
 
 	def run(self):
-		root = etree.fromstring(requests.get(self.LIST, headers = self.HEADERS).content, etree.HTMLParser())
+		root = etree.fromstring(requests.get(self.LIST, headers = self.HEADERS).content,
+			etree.HTMLParser(encoding='utf-8'))
 		ids = self.read_ids()
 
 		good_apartments = []
@@ -51,33 +82,57 @@ class StudentBoet:
 				details = etree.fromstring(requests.get(
 					self.DETAILS % apartment_id, headers = self.HEADERS).content, etree.HTMLParser())
 
-				try:
-					move_in = self.get_move_in(details)
-				except:
-					sys.stderr.write('Parsing error: %s\n' % apartment_id)
-					continue
+				full_details = self.get_full_details(apartment_id, details)
 
-				status = move_in.month in self.ACCEPTABLE_MONTHS
-				good_apartments.append(status)
-			else:
-				print 'apartment_id already in cache: ', apartment_id
-
-		if good_apartments:
-			self.send_message()
-
+				if full_details['move_in'] != '':
+					if full_details['move_in'].month == 8:
+						full_details['move_in'] = full_details['move_in'].date().isoformat()
+						if full_details['move_out'] != '':
+							full_details['move_out'] = full_details['move_out'].date().isoformat()
+						good_apartments.append(full_details)
 		self.write_ids(ids)
+		return good_apartments
 
-	def send_message(self):
-		url = 'http://www.nova.is/Services/Messaging/SendSMS'
-		data = {
-			'msisdn': '8484903',
-			'message': 'Found a good apartment!'
-		}
-		requests.post(url, headers = self.HEADERS, data = data)
+	def send_message(self, body):
+		sender = os.environ['GMAIL']
+		recipient = os.environ['GMAIL']
+		subject = 'StudentBoet %s.' % ('failure' if 'Traceback' in body else 'success',)
+
+		body = '' + body + ''
+
+		headers = [
+			'From: ' + sender,
+			'Subject: ' + subject,
+			'To: ' + recipient,
+			'MIME-Version: 1.0',
+			'Content-Type: text/plain'
+		]
+		headers = '\r\n'.join(headers)
+		 
+		session = smtplib.SMTP('smtp.gmail.com', 587)
+		session.ehlo()
+		session.starttls()
+		session.ehlo
+		session.login(sender, os.environ['GMAIL_PASSWORD'])
+		session.sendmail(sender, recipient, headers + '\r\n\r\n' + body)
+		session.quit()
 
 def main():
 	S = StudentBoet()
-	S.run()
+	try:
+		apartments = S.run()
+		if apartments != []:
+			message = '''Url: {url}
+Move in: {move_in}
+Move out: {move_out}
+Rent: {rent}
+Type: {type}
+Size: {size}
+Title: {title}'''
+			message = 'Found apartments..\n%s' % '=====\n'.join(message.format(**a) for a in apartments)
+			S.send_message(message)
+	except:
+		S.send_message('\n' + traceback.format_exc())
 
 if __name__ == '__main__':
 	main()
