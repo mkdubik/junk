@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import smtplib
 import json
 import os
@@ -40,7 +42,7 @@ class StudentBoet:
 			'rent': '',
 			'type': '',
 			'size': '',
-			'title': title[1].text if len(title) > 1 else 'Unknown',
+			'title': title[1].text.encode('utf8') if len(title) > 1 else 'Unknown',
 		}
 
 		details = details.find('.//div[@id="housing_details"]')
@@ -73,7 +75,6 @@ class StudentBoet:
 		ids = self.read_ids()
 
 		good_apartments = []
-
 		for apartment in root.find('.//table[@class="housing_list"]').findall('tr')[1:]:
 			apartment_id = int(re.search('\d+', apartment.find('.//a').attrib['href']).group(0))
 
@@ -85,11 +86,12 @@ class StudentBoet:
 				full_details = self.get_full_details(apartment_id, details)
 
 				if full_details['move_in'] != '':
-					if full_details['move_in'].month == 8:
+					if full_details['move_in'].month in (7, 8):
 						full_details['move_in'] = full_details['move_in'].date().isoformat()
 						if full_details['move_out'] != '':
 							full_details['move_out'] = full_details['move_out'].date().isoformat()
 						good_apartments.append(full_details)
+
 		self.write_ids(ids)
 		return good_apartments
 
@@ -129,10 +131,11 @@ Rent: {rent}
 Type: {type}
 Size: {size}
 Title: {title}'''
-			message = 'Found apartments..\n%s' % '=====\n'.join(message.format(**a) for a in apartments)
+			message = 'Found apartments..\n%s' % '\n=====================\n'.join(message.format(**a) for a in apartments)
 			S.send_message(message)
 	except:
-		S.send_message('\n' + traceback.format_exc())
+		trace = traceback.format_exc()
+		S.send_message('\n' + trace)
 
 if __name__ == '__main__':
 	main()
