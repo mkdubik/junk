@@ -1,0 +1,30 @@
+# Smali hacking for fun and profit
+
+This is a reverse engineering effort in which I reverse engineered the Mecenat app. This project is an excersize in apk reverse engineering and smali hacking and to be used for me as a reference in future work. I am releasing this information now since I no longer am a student at Uppsala university.
+
+## Motivation
+
+To enter student nations one would have to present a valid student ID. By creating an account on mecenat.se and logging in through the app it's possible to enter the nations by showing the card activity wwwwto the guards. This in theory seems quite safe and fine however spoofing the HTML that is returned is quite easy with smali redirection. This is great news for you because sometimes when you invite your friends to Uppsala that are not students (impossible to buy guest cards) they cannot enter the nations with you. In addition you can probably enter the clubs and use nation offers for free (such as Uplands two for one burger or Snerikes summer club) even if you're not a member of that nation. I guess this makes me a grayhat hacker since I'm not selling this solution and just want to use this zero day for my own profit.
+
+## Smali
+
+Smali is this funky android/java assembly code. <TODO>
+
+## Method
+
+The first method is to extract the apk file from your phone. There's plenty of tutorials online on how to do that.
+Once extracted we use apktool to produce smali assembly and once this is done we start probing the application by adding print statements and discover the application flow. By looking at the deconstructed names the 'CardActivity' gives a hint on where the card is displayed. Taking a deeper look into this class we discover that <blabla FileCache> exists. Using print statements we discover getContent function. While still digging in that function we discover an instance of File.
+
+By printing out the contents of the inputstream from that file it's obvious that the app downloads the pages on startup and serves this cached version when requested. We can prove this by shutting off internet access on the mobile phone and attempting to open the CardActivity. One more thing to note is that by clicking the Mecenat logo one can discover additional info about the cardholder. This is nothing more then an annoyance since this activity is mostly HTML/JS as well. One thing to note is that it's impossible to load the pictures from your assets if the webpage is from a remote domain. A solution to this is to download the image of a nation of your own choice and encode that string to base64. Now in the <img src= field/attribute you simply load your base64 string.
+
+Now that you have control over the HTML it's a matter of string replace. To be honest you could have discarded that HTML completely and forged a new one by loading an asset with the getAsset function (returns an InputStream). Proof is left as an excersize to the reader.
+
+So how do you redirect the flow? Simple. Before getContent function finishes find a register that will be used later and do static function call. This static function accepts an InputStream and spits out a new one. Use apktool to assemble your smali mess and ship it up to the Android device. Writing smali sucks ass so my strategy was to code my functions in Java using Android Studio, compile it to an apk and disassemble it using apktool for the smali. Unfortunately I did not figure out how to add smali classes but just adding static functions was good enough.
+
+## Other approaches
+
+Theres several other techniques that could be possible. Since the CardActivity is HTML/JS you can just write a javascript function that modifies the content. However this method introduces a small delay between original text and the forged one when displaying the activity making it look really fishy. Another approach could be to intercept the HTML files way before they enter the cache and modify them on the fly. This is can be achieved by overriding the MecenatWebView onSSLError function and just proceeding if the SSL license is invalid.
+
+## Future work
+
+Having the knowledge of this you can spoof the entire app if you're patient. If this security issue is never discovered one could be a lifelong member of Uppsala nations as an alumni.
