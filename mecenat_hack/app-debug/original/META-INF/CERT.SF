@@ -1,6 +1,6 @@
 Signature-Version: 1.0
 X-Android-APK-Signed: 2
-SHA1-Digest-Manifest: RVdv26qBoEOUbUTEgFPi3KuWDkk=
+SHA1-Digest-Manifest: 916l/GXaC5oPFXK2pDbhth9peH4=
 Created-By: 1.0 (Android)
 
 Name: res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png
@@ -1220,7 +1220,7 @@ Name: res/drawable/abc_seekbar_tick_mark_material.xml
 SHA1-Digest: IzxssHUUmLTGzWhXew1rxb6FpAo=
 
 Name: classes.dex
-SHA1-Digest: IQGzAknanNaKgAig5W7a9WqZ5P8=
+SHA1-Digest: webKGvdTIzSnP4RVSA7YO95n6sI=
 
 Name: res/drawable-hdpi-v4/notification_bg_normal.9.png
 SHA1-Digest: e39HWYSRdaO+/NhxvCOzRk3gTPg=

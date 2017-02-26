@@ -1852,7 +1852,7 @@
 .end method
 
 .method static f3(Ljava/io/FileInputStream;Ljava/lang/String;)Ljava/io/InputStream;
-    .locals 22
+    .locals 23
     .param p0, "fis"    # Ljava/io/FileInputStream;
     .param p1, "url"    # Ljava/lang/String;
     .annotation system Ldalvik/annotation/Throws;
@@ -1862,574 +1862,594 @@
     .end annotation
 
     .prologue
-    .line 40
+    .line 42
     new-instance v3, Ljava/io/BufferedInputStream;
 
     move-object/from16 v0, p0
 
     invoke-direct {v3, v0}, Ljava/io/BufferedInputStream;-><init>(Ljava/io/InputStream;)V
 
-    .line 41
+    .line 43
     .local v3, "bis":Ljava/io/BufferedInputStream;
     new-instance v15, Ljava/lang/StringBuilder;
 
     invoke-direct {v15}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 45
+    .line 47
     .local v15, "sb":Ljava/lang/StringBuilder;
-    const/16 v17, 0x1
+    const/16 v18, 0x1
 
-    move/from16 v0, v17
+    move/from16 v0, v18
 
     new-array v5, v0, [B
 
-    .line 46
+    .line 48
     .local v5, "buffer":[B
     :goto_0
     move-object/from16 v0, p0
 
     invoke-virtual {v0, v5}, Ljava/io/FileInputStream;->read([B)I
 
-    move-result v17
+    move-result v18
 
-    const/16 v18, -0x1
+    const/16 v19, -0x1
 
-    move/from16 v0, v17
+    move/from16 v0, v18
 
-    move/from16 v1, v18
+    move/from16 v1, v19
 
     if-eq v0, v1, :cond_0
 
-    .line 47
-    new-instance v17, Ljava/lang/String;
+    .line 49
+    new-instance v18, Ljava/lang/String;
 
-    move-object/from16 v0, v17
+    move-object/from16 v0, v18
 
     invoke-direct {v0, v5}, Ljava/lang/String;-><init>([B)V
 
-    move-object/from16 v0, v17
+    move-object/from16 v0, v18
 
     invoke-virtual {v15, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     goto :goto_0
 
-    .line 50
+    .line 52
     :cond_0
     const/4 v10, 0x1
 
-    .line 51
+    .line 53
     .local v10, "nation":I
-    const/16 v17, 0xd
+    const/16 v18, 0xd
 
-    move/from16 v0, v17
+    move/from16 v0, v18
 
     new-array v12, v0, [Ljava/lang/String;
 
-    const/16 v17, 0x0
+    const/16 v18, 0x0
 
-    const-string v18, "Stockholms"
+    const-string v19, "Stockholms"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x1
+    const/16 v18, 0x1
 
-    const-string v18, "Uplands"
+    const-string v19, "Uplands"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x2
+    const/16 v18, 0x2
 
-    const-string v18, "G\u00e4strike-H\u00e4lsinge"
+    const-string v19, "G\u00e4strike-H\u00e4lsinge"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x3
+    const/16 v18, 0x3
 
-    const-string v18, "\u00d6stg\u00f6ta"
+    const-string v19, "\u00d6stg\u00f6ta"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x4
+    const/16 v18, 0x4
 
-    const-string v18, "V\u00e4stg\u00f6ta"
+    const-string v19, "V\u00e4stg\u00f6ta"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x5
+    const/16 v18, 0x5
 
-    const-string v18, "S\u00f6dermanlands-Nerikes"
+    const-string v19, "S\u00f6dermanlands-Nerikes"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x6
+    const/16 v18, 0x6
 
-    const-string v18, "V\u00e4stmanlands-Dala"
+    const-string v19, "V\u00e4stmanlands-Dala"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x7
+    const/16 v18, 0x7
 
-    const-string v18, "Sm\u00e5lands"
+    const-string v19, "Sm\u00e5lands"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x8
+    const/16 v18, 0x8
 
-    const-string v18, "G\u00f6teborgs"
+    const-string v19, "G\u00f6teborgs"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0x9
+    const/16 v18, 0x9
 
-    const-string v18, "Kalmar"
+    const-string v19, "Kalmar"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0xa
+    const/16 v18, 0xa
 
-    const-string v18, "V\u00e4rmlands"
+    const-string v19, "V\u00e4rmlands"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0xb
+    const/16 v18, 0xb
 
-    const-string v18, "Norrlands"
+    const-string v19, "Norrlands"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    const/16 v17, 0xc
+    const/16 v18, 0xc
 
-    const-string v18, "Gotlands"
+    const-string v19, "Gotlands"
 
-    aput-object v18, v12, v17
+    aput-object v19, v12, v18
 
-    .line 67
+    .line 69
     .local v12, "nation_name":[Ljava/lang/String;
-    const/16 v17, 0xd
+    const/16 v18, 0xd
 
-    move/from16 v0, v17
+    move/from16 v0, v18
 
     new-array v11, v0, [Ljava/lang/String;
 
-    const/16 v17, 0x0
+    const/16 v18, 0x0
 
-    const-string v18, "sh.txt"
+    const-string v19, "sh"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x1
+    const/16 v18, 0x1
 
-    const-string v18, "up.txt"
+    const-string v19, "up"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x2
+    const/16 v18, 0x2
 
-    const-string v18, "gh.txt"
+    const-string v19, "gh"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x3
+    const/16 v18, 0x3
 
-    const-string v18, "og.txt"
+    const-string v19, "og"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x4
+    const/16 v18, 0x4
 
-    const-string v18, "vg"
+    const-string v19, "vg"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x5
+    const/16 v18, 0x5
 
-    const-string v18, "sn"
+    const-string v19, "sn"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x6
+    const/16 v18, 0x6
 
-    const-string v18, "vd"
+    const-string v19, "vd"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x7
+    const/16 v18, 0x7
 
-    const-string v18, "sl"
+    const-string v19, "sl"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x8
+    const/16 v18, 0x8
 
-    const-string v18, "gb"
+    const-string v19, "gb"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0x9
+    const/16 v18, 0x9
 
-    const-string v18, "kl"
+    const-string v19, "kl"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0xa
+    const/16 v18, 0xa
 
-    const-string v18, "vl"
+    const-string v19, "vl"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0xb
+    const/16 v18, 0xb
 
-    const-string v18, "nl"
+    const-string v19, "nl"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    const/16 v17, 0xc
+    const/16 v18, 0xc
 
-    const-string v18, "gl"
+    const-string v19, "gl"
 
-    aput-object v18, v11, v17
+    aput-object v19, v11, v18
 
-    .line 83
+    .line 86
     .local v11, "nation_img":[Ljava/lang/String;
     const-string v13, "-0478"
 
-    .line 84
+    .line 87
     .local v13, "personnumer_ending":Ljava/lang/String;
-    new-instance v17, Ljava/util/GregorianCalendar;
+    new-instance v18, Ljava/util/GregorianCalendar;
 
-    const/16 v18, 0x7c9
+    const/16 v19, 0x7c9
 
-    const/16 v19, 0xb
+    const/16 v20, 0xb
 
-    const/16 v20, 0x1
+    const/16 v21, 0x1
 
-    invoke-direct/range {v17 .. v20}, Ljava/util/GregorianCalendar;-><init>(III)V
+    invoke-direct/range {v18 .. v21}, Ljava/util/GregorianCalendar;-><init>(III)V
 
-    invoke-virtual/range {v17 .. v17}, Ljava/util/GregorianCalendar;->getTime()Ljava/util/Date;
+    invoke-virtual/range {v18 .. v18}, Ljava/util/GregorianCalendar;->getTime()Ljava/util/Date;
 
     move-result-object v7
 
-    .line 87
+    .line 90
     .local v7, "date":Ljava/util/Date;
-    const/16 v17, 0x2
+    const/16 v18, 0x2
 
-    move/from16 v0, v17
+    move/from16 v0, v18
 
     new-array v6, v0, [[Ljava/lang/String;
 
-    const/16 v17, 0x0
+    const/16 v18, 0x0
 
-    const/16 v18, 0x5
+    const/16 v19, 0x5
 
-    move/from16 v0, v18
-
-    new-array v0, v0, [Ljava/lang/String;
-
-    move-object/from16 v18, v0
-
-    const/16 v19, 0x0
-
-    const-string v20, "cardnumber"
-
-    aput-object v20, v18, v19
-
-    const/16 v19, 0x1
-
-    const-string v20, "lastname"
-
-    aput-object v20, v18, v19
-
-    const/16 v19, 0x2
-
-    const-string v20, "firstname"
-
-    aput-object v20, v18, v19
-
-    const/16 v19, 0x3
-
-    const-string v20, "birthdate"
-
-    aput-object v20, v18, v19
-
-    const/16 v19, 0x4
-
-    const-string v20, "student-id"
-
-    aput-object v20, v18, v19
-
-    aput-object v18, v6, v17
-
-    const/16 v17, 0x1
-
-    const/16 v18, 0x5
-
-    move/from16 v0, v18
+    move/from16 v0, v19
 
     new-array v0, v0, [Ljava/lang/String;
 
-    move-object/from16 v18, v0
+    move-object/from16 v19, v0
 
-    const/16 v19, 0x0
+    const/16 v20, 0x0
 
-    const-string v20, "9754 2445 2105 2753"
+    const-string v21, "cardnumber"
 
-    aput-object v20, v18, v19
+    aput-object v21, v19, v20
 
-    const/16 v19, 0x1
+    const/16 v20, 0x1
 
-    const-string v20, "Okonski"
+    const-string v21, "lastname"
 
-    aput-object v20, v18, v19
+    aput-object v21, v19, v20
 
-    const/16 v19, 0x2
+    const/16 v20, 0x2
 
-    const-string v20, "Aleksander"
+    const-string v21, "firstname"
 
-    aput-object v20, v18, v19
+    aput-object v21, v19, v20
 
-    const/16 v19, 0x3
+    const/16 v20, 0x3
 
-    const-string v20, ""
+    const-string v21, "birthdate"
 
-    aput-object v20, v18, v19
+    aput-object v21, v19, v20
 
-    const/16 v19, 0x4
+    const/16 v20, 0x4
 
-    const-string v20, "0555 2323"
+    const-string v21, "student-id"
 
-    aput-object v20, v18, v19
+    aput-object v21, v19, v20
 
-    aput-object v18, v6, v17
+    aput-object v19, v6, v18
 
-    .line 93
+    const/16 v18, 0x1
+
+    const/16 v19, 0x5
+
+    move/from16 v0, v19
+
+    new-array v0, v0, [Ljava/lang/String;
+
+    move-object/from16 v19, v0
+
+    const/16 v20, 0x0
+
+    const-string v21, "9754 2445 2105 2753"
+
+    aput-object v21, v19, v20
+
+    const/16 v20, 0x1
+
+    const-string v21, "Okonski"
+
+    aput-object v21, v19, v20
+
+    const/16 v20, 0x2
+
+    const-string v21, "Aleksander"
+
+    aput-object v21, v19, v20
+
+    const/16 v20, 0x3
+
+    const-string v21, ""
+
+    aput-object v21, v19, v20
+
+    const/16 v20, 0x4
+
+    const-string v21, "0555 2323"
+
+    aput-object v21, v19, v20
+
+    aput-object v19, v6, v18
+
+    .line 96
     .local v6, "data":[[Ljava/lang/String;
     invoke-virtual {v15}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v14
 
-    .line 94
+    .line 97
     .local v14, "s":Ljava/lang/String;
-    const-string v17, "win"
+    const-string v18, "win"
 
     move-object/from16 v0, p1
 
-    move-object/from16 v1, v17
+    move-object/from16 v1, v18
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
-    move-result v17
+    move-result v18
 
-    if-eqz v17, :cond_2
+    if-eqz v18, :cond_2
 
-    .line 95
-    new-instance v4, Ljava/lang/StringBuilder;
-
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
-
-    .line 96
-    .local v4, "buf":Ljava/lang/StringBuilder;
-    invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
-
-    move-result-object v17
-
-    invoke-virtual/range {v17 .. v17}, Landroid/content/res/Resources;->getAssets()Landroid/content/res/AssetManager;
-
-    move-result-object v17
-
-    aget-object v18, v11, v10
-
-    invoke-virtual/range {v17 .. v18}, Landroid/content/res/AssetManager;->open(Ljava/lang/String;)Ljava/io/InputStream;
-
-    move-result-object v9
-
-    .line 97
-    .local v9, "json":Ljava/io/InputStream;
-    new-instance v8, Ljava/io/BufferedReader;
-
-    new-instance v17, Ljava/io/InputStreamReader;
-
-    move-object/from16 v0, v17
-
-    invoke-direct {v0, v9}, Ljava/io/InputStreamReader;-><init>(Ljava/io/InputStream;)V
-
-    move-object/from16 v0, v17
-
-    invoke-direct {v8, v0}, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader;)V
-
-    .line 100
-    .local v8, "in":Ljava/io/BufferedReader;
-    :goto_1
-    invoke-virtual {v8}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
+    .line 98
+    invoke-static {}, Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
 
     move-result-object v16
 
-    .local v16, "str":Ljava/lang/String;
-    if-eqz v16, :cond_1
+    .line 99
+    .local v16, "sdcard":Ljava/io/File;
+    new-instance v8, Ljava/io/File;
 
-    .line 101
-    move-object/from16 v0, v16
+    new-instance v18, Ljava/lang/StringBuilder;
 
-    invoke-virtual {v4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-direct/range {v18 .. v18}, Ljava/lang/StringBuilder;-><init>()V
 
-    goto :goto_1
+    const-string v19, "nation/"
 
-    .line 103
-    :cond_1
-    invoke-virtual {v8}, Ljava/io/BufferedReader;->close()V
-
-    .line 105
-    new-instance v2, Ljava/text/SimpleDateFormat;
-
-    const-string v17, "y-MM-dd"
-
-    move-object/from16 v0, v17
-
-    invoke-direct {v2, v0}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;)V
-
-    .line 106
-    .local v2, "birthdate":Ljava/text/Format;
-    const/16 v17, 0x1
-
-    aget-object v17, v6, v17
-
-    const/16 v18, 0x3
-
-    invoke-virtual {v2, v7}, Ljava/text/Format;->format(Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v19
-
-    aput-object v19, v17, v18
-
-    .line 107
-    aget-object v17, v12, v10
-
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual/range {v18 .. v19}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v18
 
-    move-object/from16 v0, v17
+    aget-object v19, v11, v10
+
+    invoke-virtual/range {v18 .. v19}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v18
+
+    invoke-virtual/range {v18 .. v18}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v18
+
+    move-object/from16 v0, v16
 
     move-object/from16 v1, v18
 
-    invoke-static {v14, v0, v6, v1}, Lse/mecenat/app/impl/FileSystemCacheStorage;->changeData2(Ljava/lang/String;Ljava/lang/String;[[Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-direct {v8, v0, v1}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
 
-    move-result-object v14
+    .line 100
+    .local v8, "file":Ljava/io/File;
+    new-instance v17, Ljava/lang/StringBuilder;
 
-    .line 115
-    .end local v4    # "buf":Ljava/lang/StringBuilder;
-    .end local v8    # "in":Ljava/io/BufferedReader;
-    .end local v9    # "json":Ljava/io/InputStream;
-    .end local v16    # "str":Ljava/lang/String;
-    :goto_2
-    new-instance v17, Ljava/io/ByteArrayInputStream;
+    invoke-direct/range {v17 .. v17}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v18, "UTF-8"
+    .line 102
+    .local v17, "text":Ljava/lang/StringBuilder;
+    new-instance v4, Ljava/io/BufferedReader;
+
+    new-instance v18, Ljava/io/FileReader;
 
     move-object/from16 v0, v18
 
-    invoke-virtual {v14, v0}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+    invoke-direct {v0, v8}, Ljava/io/FileReader;-><init>(Ljava/io/File;)V
 
-    move-result-object v18
+    move-object/from16 v0, v18
 
-    invoke-direct/range {v17 .. v18}, Ljava/io/ByteArrayInputStream;-><init>([B)V
+    invoke-direct {v4, v0}, Ljava/io/BufferedReader;-><init>(Ljava/io/Reader;)V
 
-    return-object v17
+    .line 104
+    .local v4, "br":Ljava/io/BufferedReader;
+    :goto_1
+    invoke-virtual {v4}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
+
+    move-result-object v9
+
+    .local v9, "line":Ljava/lang/String;
+    if-eqz v9, :cond_1
+
+    .line 105
+    move-object/from16 v0, v17
+
+    invoke-virtual {v0, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    goto :goto_1
+
+    .line 107
+    :cond_1
+    invoke-virtual {v4}, Ljava/io/BufferedReader;->close()V
 
     .line 109
-    .end local v2    # "birthdate":Ljava/text/Format;
-    :cond_2
     new-instance v2, Ljava/text/SimpleDateFormat;
 
-    const-string v17, "yyMMdd"
+    const-string v18, "y-MM-dd"
 
-    move-object/from16 v0, v17
+    move-object/from16 v0, v18
 
     invoke-direct {v2, v0}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;)V
 
     .line 110
-    .restart local v2    # "birthdate":Ljava/text/Format;
-    const/16 v17, 0x1
+    .local v2, "birthdate":Ljava/text/Format;
+    const/16 v18, 0x1
 
-    aget-object v17, v6, v17
+    aget-object v18, v6, v18
 
-    const/16 v18, 0x4
-
-    new-instance v19, Ljava/lang/StringBuilder;
-
-    invoke-direct/range {v19 .. v19}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v20, "STUDENT ID:&nbsp;&nbsp;"
-
-    invoke-virtual/range {v19 .. v20}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v19
-
-    const/16 v20, 0x1
-
-    aget-object v20, v6, v20
-
-    const/16 v21, 0x4
-
-    aget-object v20, v20, v21
-
-    invoke-virtual/range {v19 .. v20}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v19
-
-    invoke-virtual/range {v19 .. v19}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v19
-
-    aput-object v19, v17, v18
-
-    .line 111
-    const/16 v17, 0x1
-
-    aget-object v17, v6, v17
-
-    const/16 v18, 0x3
-
-    new-instance v19, Ljava/lang/StringBuilder;
-
-    invoke-direct/range {v19 .. v19}, Ljava/lang/StringBuilder;-><init>()V
+    const/16 v19, 0x3
 
     invoke-virtual {v2, v7}, Ljava/text/Format;->format(Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v20
 
-    invoke-virtual/range {v19 .. v20}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    aput-object v20, v18, v19
+
+    .line 111
+    aget-object v18, v12, v10
+
+    invoke-virtual/range {v17 .. v17}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v19
+
+    move-object/from16 v0, v18
+
+    move-object/from16 v1, v19
+
+    invoke-static {v14, v0, v6, v1}, Lse/mecenat/app/impl/FileSystemCacheStorage;->changeData2(Ljava/lang/String;Ljava/lang/String;[[Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v14
+
+    .line 119
+    .end local v4    # "br":Ljava/io/BufferedReader;
+    .end local v8    # "file":Ljava/io/File;
+    .end local v9    # "line":Ljava/lang/String;
+    .end local v16    # "sdcard":Ljava/io/File;
+    .end local v17    # "text":Ljava/lang/StringBuilder;
+    :goto_2
+    new-instance v18, Ljava/io/ByteArrayInputStream;
+
+    const-string v19, "UTF-8"
 
     move-object/from16 v0, v19
 
+    invoke-virtual {v14, v0}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+
+    move-result-object v19
+
+    invoke-direct/range {v18 .. v19}, Ljava/io/ByteArrayInputStream;-><init>([B)V
+
+    return-object v18
+
+    .line 113
+    .end local v2    # "birthdate":Ljava/text/Format;
+    :cond_2
+    new-instance v2, Ljava/text/SimpleDateFormat;
+
+    const-string v18, "yyMMdd"
+
+    move-object/from16 v0, v18
+
+    invoke-direct {v2, v0}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;)V
+
+    .line 114
+    .restart local v2    # "birthdate":Ljava/text/Format;
+    const/16 v18, 0x1
+
+    aget-object v18, v6, v18
+
+    const/16 v19, 0x4
+
+    new-instance v20, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v20 .. v20}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v21, "STUDENT ID:&nbsp;&nbsp;"
+
+    invoke-virtual/range {v20 .. v21}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v20
+
+    const/16 v21, 0x1
+
+    aget-object v21, v6, v21
+
+    const/16 v22, 0x4
+
+    aget-object v21, v21, v22
+
+    invoke-virtual/range {v20 .. v21}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v20
+
+    invoke-virtual/range {v20 .. v20}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v20
+
+    aput-object v20, v18, v19
+
+    .line 115
+    const/16 v18, 0x1
+
+    aget-object v18, v6, v18
+
+    const/16 v19, 0x3
+
+    new-instance v20, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v20 .. v20}, Ljava/lang/StringBuilder;-><init>()V
+
+    invoke-virtual {v2, v7}, Ljava/text/Format;->format(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v21
+
+    invoke-virtual/range {v20 .. v21}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v20
+
+    move-object/from16 v0, v20
+
     invoke-virtual {v0, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v19
+    move-result-object v20
 
-    invoke-virtual/range {v19 .. v19}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual/range {v20 .. v20}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v19
+    move-result-object v20
 
-    aput-object v19, v17, v18
+    aput-object v20, v18, v19
 
-    .line 112
-    aget-object v17, v12, v10
+    .line 116
+    aget-object v18, v12, v10
 
-    move-object/from16 v0, v17
+    move-object/from16 v0, v18
 
     invoke-static {v14, v0}, Lse/mecenat/app/impl/FileSystemCacheStorage;->changeNation(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v14
 
-    .line 113
+    .line 117
     invoke-static {v14, v6}, Lse/mecenat/app/impl/FileSystemCacheStorage;->changeData(Ljava/lang/String;[[Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v14
 
     goto :goto_2
 .end method
-
 
 .method static changeData(Ljava/lang/String;[[Ljava/lang/String;)Ljava/lang/String;
     .locals 6
