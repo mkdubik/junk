@@ -4,7 +4,7 @@ This is a reverse engineering effort in which I reverse engineered the Mecenat a
 
 ## Motivation
 
-To enter student nations one would have to present a valid student ID. By creating an account on mecenat.se and logging in through the app it's possible to enter the nations by showing the card activity wwwwto the guards. This in theory seems quite safe and fine however spoofing the HTML that is returned is quite easy with smali redirection. This is great news for you because sometimes when you invite your friends to Uppsala that are not students (impossible to buy guest cards) they cannot enter the nations with you. In addition you can probably enter the clubs and use nation offers for free (such as Uplands two for one burger or Snerikes summer club) even if you're not a member of that nation.
+To enter student nations one would have to present a valid student ID. By creating an account on mecenat.se and logging in through the app it's possible to enter the nations by showing the card activity to the guards. This in theory seems quite safe and fine however spoofing the HTML that is returned is quite easy with smali redirection. This is great news for you because sometimes when you invite your friends to Uppsala that are not students (impossible to buy guest cards) they cannot enter the nations with you. In addition you can probably enter the clubs and use nation offers for free (such as Uplands two for one burger or Snerikes summer club) even if you're not a member of that nation.
 
 ## Method
 
